@@ -100,7 +100,7 @@ ui = fluidPage(
     sidebarPanel(
       helpText("This Shiny app tells you which teams you should go to in order to discuss the answers to the exercise of the day."),
       tags$div(class="header", checked=NA,
-               tags$a(href="https://gist.github.com/GreatEmerald/2556d79d899f253c46ee830a3b1c5c15", "Source code")
+               tags$a(href="https://gist.github.com/GreatEmerald/a5e7ed83ab16c0125ca11079adfbaf50", "Source code")
       ),
       sliderInput("Assignment",
                   "Exercise number:",
@@ -156,4 +156,4 @@ server = function(input, output, session)
 
 shinyApp(ui = ui, server = server)
 
-# Run with shiny::runGist()
+# Run with shiny::runGist("a5e7ed83ab16c0125ca11079adfbaf50")
