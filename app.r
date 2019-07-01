@@ -148,7 +148,11 @@ server = function(input, output, session)
             OtherTeams = OtherTeams[OtherTeams != input$MyTeam]
             stopifnot(length(MyGroup) == 1)
         
-            paste0("For exercise ", input$Assignment, ", your team (", input$MyTeam, ") should discuss your answers with teams \"", OtherTeams[1], "\" and \"", OtherTeams[2], "\".")
+            switch(length(OtherTeams)+1,
+                paste0("For exercise ", input$Assignment, ", your team (", input$MyTeam, ") is all alone! You can discuss with staff or join whatever group you prefer."),
+                paste0("For exercise ", input$Assignment, ", your team (", input$MyTeam, ") should discuss your answers with team \"", OtherTeams[1], "\"."),
+                paste0("For exercise ", input$Assignment, ", your team (", input$MyTeam, ") should discuss your answers with team \"", OtherTeams[1], "\" and \"", OtherTeams[2], "\".")
+            )
         }
     }
   })
