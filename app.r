@@ -6,6 +6,7 @@ library(shiny)
 
 ## Update these values!
 ## ====================
+RepoLink = "https://github.com/geoscripting-2020"
 TeamNames = c("MMXIX",
 "Guardians of the Galaxy",
 "Mindwrap_Error",
@@ -99,11 +100,24 @@ paste("Exercise", 9:11),
 "Exercise 12",
 "Project")
 
+# https://github.com/geoscripting-2020/Exercise1-starter/pulls?utf8=%E2%9C%93&q=is%3Apr+Teamname
+DeliverableURLs = paste0(RepoLink, "/", c(
+    paste0("Exercise", 1:4, "-"),
+    "Assignment1-",
+    paste0("Exercise", 5:8, "-"),
+    "Assignment2-",
+    paste0("Exercise", 9:11, "_"),
+    "Assignment3-",
+    "Exercise12-",
+    "Project-"
+    ), "starter/pulls?utf8=%E2%9C%93&q=is%3Apr+")
+
 ExerciseIDs = grep("Exercise", DeliverableNames)
 FreeDays = which(DeliverableNames == "Exercise 8" | DeliverableNames == "Exercise 9")
 
 # Sanity checks
 stopifnot(length(DeliverableNames) == length(TeamList)) # We need one set of teams for each deliverable
+stopifnot(length(DeliverableNames) == length(DeliverableURLs))
 if (any(sapply(TeamList, anyDuplicated)))
     stop("Duplicate names found!")
 
@@ -128,7 +142,7 @@ ui = fluidPage(
     ),
 
     mainPanel(
-      textOutput("YourTeam")
+      htmlOutput("Result")
     )
   )
 )
@@ -136,14 +150,14 @@ ui = fluidPage(
 # Actual random algorithm
 server = function(input, output, session)
 {
-  output$YourTeam <- renderText({
+  output$Result <- renderUI({
     DeliverableID = which(DeliverableNames == input$DeliverableName) # Alternatively could use TeamList[[input$DeliverableName]] everywhere
     updateSelectInput(session, "MyTeam", choices=c("SELECT YOUR TEAM NAME", TeamList[[DeliverableID]]), selected=ifelse(input$MyTeam %in% TeamList[[DeliverableID]], input$MyTeam, "SELECT YOUR TEAM NAME"))
     
     if (input$MyTeam == "SELECT YOUR TEAM NAME")
-        "Please select the exercise or assignment number by using the first drop-down box, and then select your team name from the second drop-down box."
+        tags$p("Please select the exercise or assignment number by using the first drop-down box, and then select your team name from the second drop-down box.")
     else if (DeliverableID %in% FreeDays)
-        "There is no exercise that needs to be reviewed today."
+        tags$p("There is no exercise that needs to be reviewed today.")
     else
     {
         GroupSize = if (DeliverableID %in% ExerciseIDs) ExerciseGroupSize else AssignmentGroupSize
@@ -161,12 +175,13 @@ server = function(input, output, session)
             MyGroup = GroupNumbers[TeamNames == input$MyTeam]
             OtherTeams = TeamNames[GroupNumbers == MyGroup]
             OtherTeams = OtherTeams[OtherTeams != input$MyTeam]
+            TeamURLs = paste0(DeliverableURLs[DeliverableID], sapply(OtherTeams, URLencode, reserved=TRUE))
             stopifnot(length(MyGroup) == 1)
         
             switch(length(OtherTeams)+1,
                 paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") is all alone! You can discuss with staff or review whatever group you prefer."),
-                paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") should review the work of team \"", OtherTeams[1], "\"."),
-                paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") should discuss your answers with teams \"", OtherTeams[1], "\" and \"", OtherTeams[2], "\".")
+                tags$p(paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") should review the work of team"), tags$a(OtherTeams[1], href=TeamURLs[1], target="_blank"), "."),
+                tags$p(paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") should discuss your answers with teams"), tags$a(OtherTeams[1], href=TeamURLs[1], target="_blank"), "and", tags$a(OtherTeams[2], href=TeamURLs[2], target="_blank"), ".")
             )
         }
     }
