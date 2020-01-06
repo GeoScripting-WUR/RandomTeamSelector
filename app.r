@@ -23,14 +23,14 @@ TeamNames = c(
 "Apples and oranges",
 "GitGud",
 "Los Codificadores",
-"GeoScriptors ",
+"GeoScriptors",
 "Lleida Gang",
 "Amandine & Tara",
 "JR",
 "RaffeJanssen",
 "Llama",
 "Wil and Rich",
-"Whirling Thunder Anacondas ",
+"Whirling Thunder Anacondas",
 "TheBuggers",
 "Leroy and Stefan",
 "Way, No Way",
@@ -39,7 +39,8 @@ TeamNames = c(
 "Hot chocolate",
 "GozdeYosef",
 "Pyrates (R!)",
-"LaiyaKuaihuoya"
+"LaiyaKuaihuoya",
+"Sky"
 )
 TeamList = rep(list(TeamNames), 16) ## After there are any changes to teams over time, overwrite the slots like this:
 # ProjectTeams = c(
