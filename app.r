@@ -117,7 +117,7 @@ ProjectTeams = c(
 "Sky",
 "chen"
 )
-TeamList[16] = ProjectTeams
+TeamList[[16]] = ProjectTeams
 #TeamList[5:15] = rep(list(paste("Team", LETTERS[1:10])), 11)
 #TeamList[10:15] = rep(list(c(TeamNames, paste("Team", LETTERS[1:10]))), 6)
 
