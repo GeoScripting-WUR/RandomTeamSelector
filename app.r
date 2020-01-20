@@ -80,6 +80,44 @@ TeamNames = c(
 "chen"
 )
 TeamList[6:16] = rep(list(TeamNames), 11)
+ProjectTeams = c(
+"Mandalorians",
+"Fried Plantain",
+"De 2J's",
+"MGI Old Version",
+"Marijn en Daan",
+"aMEEzing Geoscripting team",
+"Alena and Isra",
+"Geo Scripting Masters",
+"Gothic Concrete Tractors",
+"BubblyCoders",
+"Chloe and Agata",
+"de koffiedrinkers",
+"Apples and oranges",
+"GitGud",
+"Los Codificadores",
+"GeoScriptors",
+"Lleida Gang",
+"Amandine & Tara",
+"JR",
+"RaffeJanssen",
+"Llama",
+"Wil and Rich",
+"Team Titus",
+"Team 42",
+"TheBuggers",
+"Leroy and Stefan",
+"Way, No Way",
+"team rocket",
+"Jorinator",
+"Hot chocolate",
+"GozdeYosef",
+"Pyrates (R!)",
+"LaiyaKuaihuoya",
+"Sky",
+"chen"
+)
+TeamList[16] = ProjectTeams
 #TeamList[5:15] = rep(list(paste("Team", LETTERS[1:10])), 11)
 #TeamList[10:15] = rep(list(c(TeamNames, paste("Team", LETTERS[1:10]))), 6)
 
