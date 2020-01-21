@@ -86,7 +86,7 @@ ProjectTeams = c(
 "De 2J's",
 "MGI Old Version",
 "Marijn en Daan",
-"aMEEzing Geoscripting team",
+"JorisBeemster",
 "Alena and Isra",
 "Geo Scripting Masters",
 "Gothic Concrete Tractors",
@@ -115,7 +115,8 @@ ProjectTeams = c(
 "Pyrates (R!)",
 "LaiyaKuaihuoya",
 "Sky",
-"chen"
+"chen",
+"LotteMathu"
 )
 TeamList[[16]] = ProjectTeams
 #TeamList[5:15] = rep(list(paste("Team", LETTERS[1:10])), 11)
