@@ -42,7 +42,7 @@ TeamNames = c(
 "LaiyaKuaihuoya",
 "Sky"
 )
-TeamList = rep(list(TeamNames), 16) ## After there are any changes to teams over time, overwrite the slots like this:
+TeamList = rep(list(TeamNames), 19) ## After there are any changes to teams over time, overwrite the slots like this:
 TeamNames = c(
 "Mandalorians",
 "Fried Plantain",
@@ -118,7 +118,52 @@ ProjectTeams = c(
 "chen",
 "LotteMathu"
 )
+ProjectGaia2 = c(
+"Fried Plantain",
+"Marijn en Daan",
+"Gothic Concrete Tractors",
+"BubblyCoders",
+"Chloe and Agata",
+"GitGud",
+"Los Codificadores",
+"Lleida Gang",
+"JR",
+"Team 42",
+"Way, No Way",
+"Pyrates (R!)"
+)
+ProjectLumen1 = c(
+"De 2J's",
+"Alena and Isra",
+"RaffeJanssen",
+"Llama",
+"Team Titus",
+"Leroy and Stefan",
+"Jorinator",
+"Hot chocolate",
+"LaiyaKuaihuoya",
+"Sky",
+"chen",
+"LotteMathu"
+)
+ProjectLumen2 = c(
+"Mandalorians",
+"MGI Old Version",
+"JorisBeemster",
+"Geo Scripting Masters",
+"de koffiedrinkers",
+"Apples and oranges",
+"GeoScriptors",
+"Amandine & Tara",
+"Wil and Rich",
+"TheBuggers",
+"team rocket",
+"GozdeYosef"
+)
 TeamList[[16]] = ProjectTeams
+TeamList[[17]] = ProjectGaia2
+TeamList[[18]] = ProjectLumen1
+TeamList[[19]] = ProjectLumen2
 #TeamList[5:15] = rep(list(paste("Team", LETTERS[1:10])), 11)
 #TeamList[10:15] = rep(list(c(TeamNames, paste("Team", LETTERS[1:10]))), 6)
 
@@ -136,7 +181,10 @@ paste("Exercise", 5:8),
 paste("Exercise", 9:11),
 "Assignment 3",
 "Exercise 12",
-"Project")
+"Project proposal",
+"Project (Gaia 2)",
+"Project (Lumen 1)",
+"Project (Lumen 2)")
 
 # https://github.com/geoscripting-2020/Exercise1-starter/pulls?utf8=%E2%9C%93&q=is%3Apr+Teamname
 DeliverableURLs = paste0(RepoLink, "/", c(
@@ -147,6 +195,9 @@ DeliverableURLs = paste0(RepoLink, "/", c(
     paste0("Exercise", 9:11, "_"),
     "Assignment3-",
     "Exercise12-",
+    "Project-",
+    "Project-",
+    "Project-",
     "Project-"
     ), "starter/pulls?utf8=%E2%9C%93&q=is%3Apr+")
 
