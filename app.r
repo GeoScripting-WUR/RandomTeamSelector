@@ -3,6 +3,7 @@
 # License: CC0 (https://creativecommons.org/publicdomain/zero/1.0/)
 
 library(shiny)
+library(stringr)
 
 ## Update these values!
 ## ====================
@@ -14,7 +15,6 @@ DeliverableNames = c(paste("Exercise", 1:3),
                      "Assignment 2",
                      paste("Exercise", 8:11),
                      "Assignment 3",
-                     "Exercise 12",
                      "Project proposal",
                      "Project (Gaia 2)",
                      "Project (Lumen 1)",
@@ -72,10 +72,10 @@ ProjectLumen1 = c('[No teams assigned]')
 ProjectLumen2 = c('[No teams assigned]')
 
 # Set team lists for project deliverables (split by subgroup)
-TeamList[[16]] = ProjectTeams
-TeamList[[17]] = ProjectGaia2
-TeamList[[18]] = ProjectLumen1
-TeamList[[19]] = ProjectLumen2
+TeamList[[length(DeliverableNames) - 3]] = ProjectTeams
+TeamList[[length(DeliverableNames) - 2]] = ProjectGaia2
+TeamList[[length(DeliverableNames) - 1]] = ProjectLumen1
+TeamList[[length(DeliverableNames)]] = ProjectLumen2
 
 Year = 2021
 Seed = 0xfedbeef
@@ -92,12 +92,11 @@ DeliverableURLs = paste0(RepoLink, "/", c(
     "Assignment_2_",
     paste0("Exercise_", 8:11, "_"),
     "Assignment_3_",
-    "Exercise12-",
     "Project-",
     "Project-",
     "Project-",
     "Project-"
-    ), "starter/pulls?utf8=%E2%9C%93&q=is%3Apr+")
+    ), "Starter-")
 
 ExerciseIDs = grep("Exercise", DeliverableNames)
 FreeDays = which(DeliverableNames == "Exercise 8" | DeliverableNames == "Exercise 9")
@@ -162,7 +161,8 @@ server = function(input, output, session)
             MyGroup = GroupNumbers[TeamNames == input$MyTeam]
             OtherTeams = TeamNames[GroupNumbers == MyGroup]
             OtherTeams = OtherTeams[OtherTeams != input$MyTeam]
-            TeamURLs = paste0(DeliverableURLs[DeliverableID], sapply(OtherTeams, URLencode, reserved=TRUE))
+            OtherTeamsFiltered = str_replace_all(OtherTeams, "[^\\w\\-_]", "_")
+            TeamURLs = paste0(DeliverableURLs[DeliverableID], sapply(OtherTeamsFiltered, URLencode, reserved=TRUE), '/issues')
             stopifnot(length(MyGroup) == 1)
         
             switch(length(OtherTeams)+1,
