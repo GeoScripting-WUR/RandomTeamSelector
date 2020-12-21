@@ -123,7 +123,7 @@ ui = fluidPage(
         choices = c("SELECT YOUR TEAM NAME", TeamList[[1]])),
       helpText("Hint: if you click on the boxes above and press Backspace, you can search for your team name by typing it."),
       tags$div(class="header", checked=NA,
-               tags$a(href="https://gist.github.com/GreatEmerald/a5e7ed83ab16c0125ca11079adfbaf50", "Source code of this Shiny app")
+               tags$a(href="https://github.com/GeoScripting-WUR/RandomTeamSelector", "Source code of this Shiny app")
       )
     ),
 
