@@ -115,7 +115,7 @@ ui = fluidPage(
   sidebarLayout(
     sidebarPanel(
       tags$p("This Shiny app tells you which teams you should go to in order to discuss the answers to the exercise of the day, or which team to review for the assignments of the week.",
-      tags$b("Please do not write these down as teams may change throughout the course! Always rerun this app using runGist()!")),
+      tags$b("Please do not write these down as teams may change throughout the course! Always rerun this app!")),
       tags$p(""),
       selectInput("DeliverableName", label = "Assignment or exercise to review:", choices=DeliverableNames),
       selectInput("MyTeam", 
