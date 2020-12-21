@@ -3,10 +3,23 @@
 # License: CC0 (https://creativecommons.org/publicdomain/zero/1.0/)
 
 library(shiny)
+library(stringr)
 
 ## Update these values!
 ## ====================
-RepoLink = "https://github.com/geoscripting-2020"
+RepoLink = "https://github.com/geoscripting-2021"
+
+DeliverableNames = c(paste("Exercise", 1:3),
+                     "Assignment 1",
+                     paste("Exercise", 4:7),
+                     "Assignment 2",
+                     paste("Exercise", 8:11),
+                     "Assignment 3",
+                     "Project proposal",
+                     "Project (Gaia 2)",
+                     "Project (Lumen 1)",
+                     "Project (Lumen 2)")
+
 TeamNames = c(
 "Mandalorians",
 "Fried Plantain",
@@ -42,164 +55,48 @@ TeamNames = c(
 "LaiyaKuaihuoya",
 "Sky"
 )
-TeamList = rep(list(TeamNames), 19) ## After there are any changes to teams over time, overwrite the slots like this:
-TeamNames = c(
-"Mandalorians",
-"Fried Plantain",
-"De 2J's",
-"MGI Old Version",
-"Marijn en Daan",
-"aMEEzing Geoscripting team",
-"Alena and Isra",
-"Geo Scripting Masters",
-"Gothic Concrete Tractors",
-"BubblyCoders",
-"Chloe and Agata",
-"de koffiedrinkers",
-"Apples and oranges",
-"GitGud",
-"Los Codificadores",
-"GeoScriptors",
-"Lleida Gang",
-"Amandine & Tara",
-"JR",
-"RaffeJanssen",
-"Llama",
-"Wil and Rich",
-"Whirling Thunder Anacondas",
-"TheBuggers",
-"Leroy and Stefan",
-"Way, No Way",
-"team rocket",
-"Jorinator",
-"Hot chocolate",
-"GozdeYosef",
-"Pyrates (R!)",
-"LaiyaKuaihuoya",
-"Sky",
-"chen"
-)
-TeamList[6:16] = rep(list(TeamNames), 11)
-ProjectTeams = c(
-"Mandalorians",
-"Fried Plantain",
-"De 2J's",
-"MGI Old Version",
-"Marijn en Daan",
-"JorisBeemster",
-"Alena and Isra",
-"Geo Scripting Masters",
-"Gothic Concrete Tractors",
-"BubblyCoders",
-"Chloe and Agata",
-"de koffiedrinkers",
-"Apples and oranges",
-"GitGud",
-"Los Codificadores",
-"GeoScriptors",
-"Lleida Gang",
-"Amandine & Tara",
-"JR",
-"RaffeJanssen",
-"Llama",
-"Wil and Rich",
-"Team Titus",
-"Team 42",
-"TheBuggers",
-"Leroy and Stefan",
-"Way, No Way",
-"team rocket",
-"Jorinator",
-"Hot chocolate",
-"GozdeYosef",
-"Pyrates (R!)",
-"LaiyaKuaihuoya",
-"Sky",
-"chen",
-"LotteMathu"
-)
-ProjectGaia2 = c(
-"Fried Plantain",
-"Marijn en Daan",
-"Gothic Concrete Tractors",
-"BubblyCoders",
-"Chloe and Agata",
-"GitGud",
-"Los Codificadores",
-"Lleida Gang",
-"JR",
-"Team 42",
-"Way, No Way",
-"Pyrates (R!)"
-)
-ProjectLumen1 = c(
-"De 2J's",
-"Alena and Isra",
-"RaffeJanssen",
-"Llama",
-"Team Titus",
-"Leroy and Stefan",
-"Jorinator",
-"Hot chocolate",
-"LaiyaKuaihuoya",
-"Sky",
-"chen",
-"LotteMathu"
-)
-ProjectLumen2 = c(
-"Mandalorians",
-"MGI Old Version",
-"JorisBeemster",
-"Geo Scripting Masters",
-"de koffiedrinkers",
-"Apples and oranges",
-"GeoScriptors",
-"Amandine & Tara",
-"Wil and Rich",
-"TheBuggers",
-"team rocket",
-"GozdeYosef"
-)
-TeamList[[16]] = ProjectTeams
-TeamList[[17]] = ProjectGaia2
-TeamList[[18]] = ProjectLumen1
-TeamList[[19]] = ProjectLumen2
-#TeamList[5:15] = rep(list(paste("Team", LETTERS[1:10])), 11)
-#TeamList[10:15] = rep(list(c(TeamNames, paste("Team", LETTERS[1:10]))), 6)
+TeamList = rep(list(TeamNames), length(DeliverableNames)) 
+## After there are any changes to teams over time, overwrite the slots like this:
+# TeamList[Dstart:Dend] = rep(list(newTeamNames), rangeLen)
+## Where `Dstart` and `Dend` are the indices of the first and last deliverable in 
+## the range to which the new team names apply.
+## `rangeLen` is the length of the range (length of `Dstart:Dend`)
 
-Year = 2020
+# Set project teams; Change if team changes occur for the project
+ProjectTeams = TeamNames
+
+# Set project presentation subgroups; fill when division is known
+# Arrays need to have some value, to preserve the length of TeamList
+ProjectGaia2 = c('[No teams assigned]')
+ProjectLumen1 = c('[No teams assigned]')
+ProjectLumen2 = c('[No teams assigned]')
+
+# Set team lists for project deliverables (split by subgroup)
+TeamList[[length(DeliverableNames) - 3]] = ProjectTeams
+TeamList[[length(DeliverableNames) - 2]] = ProjectGaia2
+TeamList[[length(DeliverableNames) - 1]] = ProjectLumen1
+TeamList[[length(DeliverableNames)]] = ProjectLumen2
+
+Year = 2021
 Seed = 0xfedbeef
 ## ====================
 
 ExerciseGroupSize = 3 # We want groups of 3 teams
-AssignmentGroupSize = 2 # But only one for graded assignments
+AssignmentGroupSize = 3 # But only one for graded assignments
 
-DeliverableNames = c(paste("Exercise", 1:4),
-"Assignment 1",
-paste("Exercise", 5:8),
-"Assignment 2",
-paste("Exercise", 9:11),
-"Assignment 3",
-"Exercise 12",
-"Project proposal",
-"Project (Gaia 2)",
-"Project (Lumen 1)",
-"Project (Lumen 2)")
-
-# https://github.com/geoscripting-2020/Exercise1-starter/pulls?utf8=%E2%9C%93&q=is%3Apr+Teamname
+# https://github.com/geoscripting-2021/Exercise_1_Starter/pulls?utf8=%E2%9C%93&q=is%3Apr+Teamname
 DeliverableURLs = paste0(RepoLink, "/", c(
-    paste0("Exercise", 1:4, "-"),
-    "Assignment1-",
-    paste0("Exercise", 5:8, "-"),
-    "Assignment2-",
-    paste0("Exercise", 9:11, "_"),
-    "Assignment3-",
-    "Exercise12-",
+    paste0("Exercise_", 1:3, "_"),
+    "Assignment_1_",
+    paste0("Exercise_", 4:7, "_"),
+    "Assignment_2_",
+    paste0("Exercise_", 8:11, "_"),
+    "Assignment_3_",
     "Project-",
     "Project-",
     "Project-",
     "Project-"
-    ), "starter/pulls?utf8=%E2%9C%93&q=is%3Apr+")
+    ), "Starter-")
 
 ExerciseIDs = grep("Exercise", DeliverableNames)
 FreeDays = which(DeliverableNames == "Exercise 8" | DeliverableNames == "Exercise 9")
@@ -264,13 +161,14 @@ server = function(input, output, session)
             MyGroup = GroupNumbers[TeamNames == input$MyTeam]
             OtherTeams = TeamNames[GroupNumbers == MyGroup]
             OtherTeams = OtherTeams[OtherTeams != input$MyTeam]
-            TeamURLs = paste0(DeliverableURLs[DeliverableID], sapply(OtherTeams, URLencode, reserved=TRUE))
+            OtherTeamsFiltered = str_replace_all(OtherTeams, "[^\\w\\-_]", "_")
+            TeamURLs = paste0(DeliverableURLs[DeliverableID], sapply(OtherTeamsFiltered, URLencode, reserved=TRUE), '/issues')
             stopifnot(length(MyGroup) == 1)
         
             switch(length(OtherTeams)+1,
                 paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") is all alone! You can discuss with staff or review whatever group you prefer."),
                 tags$p(paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") should review the work of team"), tags$a(OtherTeams[1], href=TeamURLs[1], target="_blank"), "."),
-                tags$p(paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") should discuss your answers with teams"), tags$a(OtherTeams[1], href=TeamURLs[1], target="_blank"), "and", tags$a(OtherTeams[2], href=TeamURLs[2], target="_blank"), ".")
+                tags$p(paste0("For ", input$DeliverableName, ", your team (", input$MyTeam, ") should review the work of teams"), tags$a(OtherTeams[1], href=TeamURLs[1], target="_blank"), "and", tags$a(OtherTeams[2], href=TeamURLs[2], target="_blank"), ".")
             )
         }
     }
