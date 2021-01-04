@@ -49,7 +49,7 @@ TeamNames = c(
   "PhDs",
   "cautious groovy asp",
   "enthusiastic crystal bug",
-  "heavenly defiant lion",
+  "heavenly defiant lion"
 )
 TeamList = rep(list(TeamNames), length(DeliverableNames)) 
 ## After there are any changes to teams over time, overwrite the slots like this:
