@@ -168,7 +168,7 @@ server = function(input, output, session)
             MyGroup = GroupNumbers[TeamNames == input$MyTeam]
             OtherTeams = TeamNames[GroupNumbers == MyGroup]
             OtherTeams = OtherTeams[OtherTeams != input$MyTeam]
-            OtherTeamsFiltered = str_replace_all(OtherTeams, "[^\\w\\-_]", "_")
+            OtherTeamsFiltered = str_replace_all(OtherTeams, "[^a-zA-Z0-9\\-_]", "_")
             TeamURLs = paste0(DeliverableURLs[DeliverableID], sapply(OtherTeamsFiltered, URLencode, reserved=TRUE), '/issues')
             stopifnot(length(MyGroup) == 1)
         
