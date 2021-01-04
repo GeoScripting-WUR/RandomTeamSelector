@@ -21,39 +21,35 @@ DeliverableNames = c(paste("Exercise", 1:3),
                      "Project (Lumen 2)")
 
 TeamNames = c(
-"Mandalorians",
-"Fried Plantain",
-"De 2J's",
-"MGI Old Version",
-"Marijn en Daan",
-"aMEEzing Geoscripting team",
-"Alena and Isra",
-"Geo Scripting Masters",
-"Gothic Concrete Tractors",
-"BubblyCoders",
-"Chloe and Agata",
-"de koffiedrinkers",
-"Apples and oranges",
-"GitGud",
-"Los Codificadores",
-"GeoScriptors",
-"Lleida Gang",
-"Amandine & Tara",
-"JR",
-"RaffeJanssen",
-"Llama",
-"Wil and Rich",
-"Whirling Thunder Anacondas",
-"TheBuggers",
-"Leroy and Stefan",
-"Way, No Way",
-"team rocket",
-"Jorinator",
-"Hot chocolate",
-"GozdeYosef",
-"Pyrates (R!)",
-"LaiyaKuaihuoya",
-"Sky"
+  "IBBizzle",
+  "roaring bold fox",
+  "Baguette",
+  "Yneke en Suzan",
+  "lovely straight bull",
+  "Team Zeeland",
+  "Puzzles",
+  "Imperfect GeoCircle",
+  "V and B",
+  "Ultimate gold",
+  "Geowizards",
+  "Andrew & Katherine",
+  "lush convivial owl",
+  "Chicago bulls",
+  "Geoscripting Geckoes",
+  "smoky prehistoric basilisk",
+  "enchanted remarkable goshawk",
+  "arcane unique groundhog",
+  "Team MeMo",
+  "carmine avocet of swiftness (Clara and Léa)",
+  "The Toxic Pythons",
+  "spectacular wonderful finch",
+  "glaring meaty mouflon",
+  "TeamScripting",
+  "The Geodudes",
+  "cautious groovy asp",
+  "enthusiastic crystal bug",
+  "heavenly defiant lion",
+  "arrogant cyber crow"
 )
 TeamList = rep(list(TeamNames), length(DeliverableNames)) 
 ## After there are any changes to teams over time, overwrite the slots like this:
@@ -108,6 +104,17 @@ if (any(sapply(TeamList, anyDuplicated)))
     stop("Duplicate names found!")
 
 names(TeamList) = DeliverableNames
+
+# Exclude teams from specific exercises
+# * teamName (character): name of the team
+# * exerciseNames (character vector): vector of exercise names
+excludeTeams <- function(teamName, exerciseNames) {
+  for (exercise in exerciseNames) {
+    TeamList[[exercise]] = TeamList[[exercise]][TeamList[[exercise]] != teamName]
+  }
+  return(TeamList)
+}
+TeamList <- excludeTeams('Team Zeeland', c('Exercise 3'))
 
 # Web UI
 ui = fluidPage(
