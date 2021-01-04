@@ -169,6 +169,8 @@ server = function(input, output, session)
             OtherTeams = TeamNames[GroupNumbers == MyGroup]
             OtherTeams = OtherTeams[OtherTeams != input$MyTeam]
             OtherTeamsFiltered = str_replace_all(OtherTeams, "[^\\w\\-_]", "_")
+            accentedCharacters = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ"
+            OtherTeamsFiltered = str_replace_all(OtherTeamsFiltered, paste0("[", accentedCharacters, "]"), "_") # blunt implementation to replace accented characters
             TeamURLs = paste0(DeliverableURLs[DeliverableID], sapply(OtherTeamsFiltered, URLencode, reserved=TRUE), '/issues')
             stopifnot(length(MyGroup) == 1)
         
