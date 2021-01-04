@@ -46,7 +46,6 @@ TeamNames = c(
   "glaring meaty mouflon",
   "TeamScripting",
   "The Geodudes",
-  "PhDs",
   "cautious groovy asp",
   "enthusiastic crystal bug",
   "heavenly defiant lion"
@@ -104,6 +103,17 @@ if (any(sapply(TeamList, anyDuplicated)))
     stop("Duplicate names found!")
 
 names(TeamList) = DeliverableNames
+
+# Exclude teams from specific exercises
+# * teamName (character): name of the team
+# * exerciseNames (character vector): vector of exercise names
+excludeTeams <- function(teamName, exerciseNames) {
+  for (exercise in exerciseNames) {
+    TeamList[[exercise]] = TeamList[[exercise]][TeamList[[exercise]] != teamName]
+  }
+  return(TeamList)
+}
+TeamList <- excludeTeams('Team Zeeland', c('Exercise 3', 'Exercise 7', 'Exercise 11'))
 
 # Web UI
 ui = fluidPage(
