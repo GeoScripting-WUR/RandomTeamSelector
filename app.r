@@ -114,7 +114,7 @@ excludeTeams <- function(teamName, exerciseNames) {
   }
   return(TeamList)
 }
-TeamList <- excludeTeams('Team Zeeland', c('Exercise 3', 'Exercise 7', 'Exercise 11'))
+TeamList <- excludeTeams('Team Zeeland', c('Exercise 3'))
 
 # Web UI
 ui = fluidPage(
