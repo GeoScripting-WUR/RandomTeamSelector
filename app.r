@@ -40,7 +40,7 @@ TeamNames = c(
   "enchanted remarkable goshawk",
   "arcane unique groundhog",
   "Team MeMo",
-  "carmine avocet of swiftness (Clara and Léa)",
+  "The horse",
   "The Toxic Pythons",
   "spectacular wonderful finch",
   "glaring meaty mouflon",
