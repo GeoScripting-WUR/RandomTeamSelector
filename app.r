@@ -59,7 +59,36 @@ TeamList = rep(list(TeamNames), length(DeliverableNames))
 ## `rangeLen` is the length of the range (length of `Dstart:Dend`)
 
 # Set project teams; Change if team changes occur for the project
-ProjectTeams = TeamNames
+ProjectTeams = c(
+  "IBBizzle",
+  "roaring bold fox",
+  "Baguette",
+  "Yneke en Suzan",
+  "lovely straight bull",
+  "Team Zeeland",
+  "Puzzles",
+  "Imperfect GeoCircle",
+  "V and B",
+  "Ultimate gold",
+  "Geowizards",
+  "Andrew & Katherine",
+  "lush convivial owl",
+  "Chicago bulls",
+  "Geoscripting Geckoes",
+  "smoky prehistoric basilisk",
+  "enchanted remarkable goshawk",
+  "arcane unique groundhog",
+  "Team MeMo",
+  "Pygasus",
+  "The Toxic Pythons",
+  "spectacular wonderful finch",
+  "glaring meaty mouflon",
+  "TeamScripting",
+  "The Geodudes",
+  "cautious groovy asp",
+  "enthusiastic crystal bug",
+  "heavenly defiant lion"
+)
 
 # Set project presentation subgroups; fill when division is known
 # Arrays need to have some value, to preserve the length of TeamList
