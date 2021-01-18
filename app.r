@@ -156,7 +156,7 @@ ui = fluidPage(
       selectInput("DeliverableName", label = "Assignment or exercise to review:", choices=DeliverableNames),
       selectInput("MyTeam", 
         label = "Your team name:",
-        choices = c("SELECT YOUR TEAM NAME", TeamList[[1]])),
+        choices = c("SELECT YOUR TEAM NAME", sort(TeamList[[1]]))),
       helpText("Hint: if you click on the boxes above and press Backspace, you can search for your team name by typing it."),
       tags$div(class="header", checked=NA,
                tags$a(href="https://gist.github.com/GreatEmerald/a5e7ed83ab16c0125ca11079adfbaf50", "Source code of this Shiny app")
@@ -174,7 +174,7 @@ server = function(input, output, session)
 {
   output$Result <- renderUI({
     DeliverableID = which(DeliverableNames == input$DeliverableName) # Alternatively could use TeamList[[input$DeliverableName]] everywhere
-    updateSelectInput(session, "MyTeam", choices=c("SELECT YOUR TEAM NAME", TeamList[[DeliverableID]]), selected=ifelse(input$MyTeam %in% TeamList[[DeliverableID]], input$MyTeam, "SELECT YOUR TEAM NAME"))
+    updateSelectInput(session, "MyTeam", choices=c("SELECT YOUR TEAM NAME", sort(TeamList[[DeliverableID]])), selected=ifelse(input$MyTeam %in% TeamList[[DeliverableID]], input$MyTeam, "SELECT YOUR TEAM NAME"))
     
     if (input$MyTeam == "SELECT YOUR TEAM NAME")
         tags$p("Please select the exercise or assignment number by using the first drop-down box, and then select your team name from the second drop-down box.")
