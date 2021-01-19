@@ -59,7 +59,36 @@ TeamList = rep(list(TeamNames), length(DeliverableNames))
 ## `rangeLen` is the length of the range (length of `Dstart:Dend`)
 
 # Set project teams; Change if team changes occur for the project
-ProjectTeams = TeamNames
+ProjectTeams = c(
+  "IBBizzle",
+  "roaring bold fox",
+  "Baguette",
+  "Yneke en Suzan",
+  "lovely straight bull",
+  "Team Zeeland",
+  "Puzzles",
+  "Imperfect GeoCircle",
+  "V and B",
+  "Ultimate gold",
+  "Geowizards",
+  "Andrew & Katherine",
+  "lush convivial owl",
+  "Chicago bulls",
+  "Geoscripting Geckoes",
+  "smoky prehistoric basilisk",
+  "enchanted remarkable goshawk",
+  "arcane unique groundhog",
+  "Team MeMo",
+  "Pygasus",
+  "The Toxic Pythons",
+  "spectacular wonderful finch",
+  "glaring meaty mouflon",
+  "TeamScripting",
+  "The Geodudes",
+  "cautious groovy asp",
+  "enthusiastic crystal bug",
+  "heavenly defiant lion"
+)
 
 # Set project presentation subgroups; fill when division is known
 # Arrays need to have some value, to preserve the length of TeamList
@@ -115,6 +144,7 @@ excludeTeams <- function(teamName, exerciseNames) {
   return(TeamList)
 }
 TeamList <- excludeTeams('Team Zeeland', c('Exercise 3'))
+TeamList <- excludeTeams("roaring bold fox", c('Exercise 10', 'Exercise 11', 'Assignment 3'))
 
 # Web UI
 ui = fluidPage(
@@ -127,7 +157,7 @@ ui = fluidPage(
       selectInput("DeliverableName", label = "Assignment or exercise to review:", choices=DeliverableNames),
       selectInput("MyTeam", 
         label = "Your team name:",
-        choices = c("SELECT YOUR TEAM NAME", TeamList[[1]])),
+        choices = c("SELECT YOUR TEAM NAME", sort(TeamList[[1]]))),
       helpText("Hint: if you click on the boxes above and press Backspace, you can search for your team name by typing it."),
       tags$div(class="header", checked=NA,
                tags$a(href="https://github.com/GeoScripting-WUR/RandomTeamSelector", "Source code of this Shiny app")
@@ -145,7 +175,7 @@ server = function(input, output, session)
 {
   output$Result <- renderUI({
     DeliverableID = which(DeliverableNames == input$DeliverableName) # Alternatively could use TeamList[[input$DeliverableName]] everywhere
-    updateSelectInput(session, "MyTeam", choices=c("SELECT YOUR TEAM NAME", TeamList[[DeliverableID]]), selected=ifelse(input$MyTeam %in% TeamList[[DeliverableID]], input$MyTeam, "SELECT YOUR TEAM NAME"))
+    updateSelectInput(session, "MyTeam", choices=c("SELECT YOUR TEAM NAME", sort(TeamList[[DeliverableID]])), selected=ifelse(input$MyTeam %in% TeamList[[DeliverableID]], input$MyTeam, "SELECT YOUR TEAM NAME"))
     
     if (input$MyTeam == "SELECT YOUR TEAM NAME")
         tags$p("Please select the exercise or assignment number by using the first drop-down box, and then select your team name from the second drop-down box.")
