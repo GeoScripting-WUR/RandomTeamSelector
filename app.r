@@ -61,7 +61,6 @@ TeamList = rep(list(TeamNames), length(DeliverableNames))
 # Set project teams; Change if team changes occur for the project
 ProjectTeams = c(
   "IBBizzle",
-  "roaring bold fox",
   "Baguette",
   "Yneke en Suzan",
   "lovely straight bull",
