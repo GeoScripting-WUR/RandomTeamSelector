@@ -117,10 +117,10 @@ DeliverableURLs = paste0(RepoLink, "/", c(
     "Assignment_2_",
     paste0("Exercise_", 8:11, "_"),
     "Assignment_3_",
-    "Project-",
-    "Project-",
-    "Project-",
-    "Project-"
+    "Project_",
+    "Project_",
+    "Project_",
+    "Project_"
     ), "Starter-")
 
 ExerciseIDs = grep("Exercise", DeliverableNames)
