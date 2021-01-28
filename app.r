@@ -16,9 +16,9 @@ DeliverableNames = c(paste("Exercise", 1:3),
                      paste("Exercise", 8:11),
                      "Assignment 3",
                      "Project proposal",
-                     "Project (Gaia 2)",
-                     "Project (Lumen 1)",
-                     "Project (Lumen 2)")
+                     "Project (Room R)",
+                     "Project (Room Python)",
+                     "Project (Room GEE)")
 
 TeamNames = c(
   "IBBizzle",
@@ -91,15 +91,45 @@ ProjectTeams = c(
 
 # Set project presentation subgroups; fill when division is known
 # Arrays need to have some value, to preserve the length of TeamList
-ProjectGaia2 = c('[No teams assigned]')
-ProjectLumen1 = c('[No teams assigned]')
-ProjectLumen2 = c('[No teams assigned]')
+Project_RoomR = c(
+  "Puzzles",
+  "Ultimate gold",
+  "Geoscripting Geckoes",
+  "smoky prehistoric basilisk",
+  "enchanted remarkable goshawk",
+  "arcane unique groundhog",
+  "Team MeMo",
+  "glaring meaty mouflon",
+  "Yneke en Suzan"
+)
+Project_RoomPython = c(
+  "spectacular wonderful finch",
+  "heavenly defiant lion",
+  "The Toxic Pythons",
+  "lush convivial owl",
+  "lovely straight bull",
+  "Baguette",
+  "V and B",
+  "Chicago bulls",
+  "Imperfect GeoCircle"
+)
+Project_RoomGEE = c(
+  "IBBizzle",
+  "cautious groovy asp",
+  "Andrew & Katherine",
+  "Geowizards",
+  "TeamScripting",
+  "enthusiastic crystal bug",
+  "Pygasus",
+  "The Geodudes",
+  "Team Zeeland"
+)
 
 # Set team lists for project deliverables (split by subgroup)
 TeamList[[length(DeliverableNames) - 3]] = ProjectTeams
-TeamList[[length(DeliverableNames) - 2]] = ProjectGaia2
-TeamList[[length(DeliverableNames) - 1]] = ProjectLumen1
-TeamList[[length(DeliverableNames)]] = ProjectLumen2
+TeamList[[length(DeliverableNames) - 2]] = Project_RoomR
+TeamList[[length(DeliverableNames) - 1]] = Project_RoomPython
+TeamList[[length(DeliverableNames)]] = Project_RoomGEE
 
 Year = 2021
 Seed = 0xfedbeef
